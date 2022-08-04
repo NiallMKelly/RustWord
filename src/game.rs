@@ -48,7 +48,7 @@ impl Game {
 
         // The guess was OK handle it
         self.handle_guess(sanitized_guess.clone());
-
+        
         return sanitized_guess;
     }
 
@@ -66,10 +66,18 @@ impl Game {
     }
 
     pub fn check_guess(&mut self, guess: String) -> bool {
-
+        
         if guess.len() != WORD_LENGTH {
             println!("Your guess is '{}' letters. It should have {} letters.", guess.len(), WORD_LENGTH);
             return false;
+        }
+
+        // Have we already had this guess?
+        for g in &self.guesses {
+            if g.to_string() == guess {
+                println!("You have already guessed '{}'", guess);
+                return false;
+            }
         }
 
         return true;
@@ -88,6 +96,7 @@ impl Game {
         } else {
             return false;
         }
+
     }
 
     fn load_word_dict() -> Vec<String> {
