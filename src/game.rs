@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 use std::io;
 
+use std::format;
+
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
 
@@ -36,6 +38,8 @@ impl Game {
 
         while !valid_guess {
             guess = String::new();
+
+            println!("Guess: ({} More)", (MAX_GUESSES - self.guesses.len()));
             io::stdin().read_line(&mut guess).unwrap();
 
             // Sanitize the guess so we don't have rogue new lines etc
@@ -57,12 +61,33 @@ impl Game {
         self.guesses.push(guess.clone());
 
         // Add the letters used into the HashSet
-        guess.chars().enumerate().for_each(|(pos, c)| {
+        guess.chars().enumerate().for_each(|(_pos, c)| {
             self.letters_used.insert(c);
         });
 
         // Set the current guess
         self.current_guess = guess;
+    }
+
+    pub fn show_guesses(&mut self) {
+        println!("Your Guesses");
+
+        let guesses_remaining = MAX_GUESSES - self.guesses.len();
+        
+        for g in &self.guesses {
+            let mut output = String::new();
+            g.chars().enumerate().for_each(|(_pos, c)| {
+                let currstr = format!("[{}]", c);
+                output.push_str(&currstr);
+            });
+            println!("{}", output);
+        }
+
+        (0..guesses_remaining).for_each(|_n: usize| {
+            println!("[ ][ ][ ][ ][ ]");
+        });
+
+        println!("\n");
     }
 
     pub fn check_guess(&mut self, guess: String) -> bool {

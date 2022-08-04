@@ -7,7 +7,7 @@ TODO:
 
 [X] - Don't allow the same guess more than once
 
-[ ] - Show all guesses
+[X] - Show all guesses
 
 [ ] - Indicate correct letters
 
@@ -16,6 +16,8 @@ TODO:
 [ ] - Create a propert dictionary of 5 letter words
 
 [ ] - Different difficulties
+
+[ ] - Only allow valid worlds in the dictionary
 
 Future:
 
