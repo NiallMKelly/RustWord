@@ -87,17 +87,16 @@ impl Game {
         // Game over id;
         // We have run out of guesses
         // We have got the right answer
-        if self.guesses.len() >= MAX_GUESSES {
-            println!("You ran out of guesses!");
-            return true;
-        } else if &self.current_guess == &self.word {
+        if &self.current_guess == &self.word {
             println!("Correct! You guessed the word correctly!");
             return true;
+        } else if self.guesses.len() >= MAX_GUESSES {
+            println!("You ran out of guesses!");
+            return true;
         } else {
-            return false;
+                return false;
+            }   
         }
-
-    }
 
     fn load_word_dict() -> Vec<String> {
         let mut dict = Vec::new();
