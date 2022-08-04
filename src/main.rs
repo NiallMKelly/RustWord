@@ -11,4 +11,6 @@ fn main() {
         game.show_guesses();
         let input = game.wait_for_guess();
     }
+
+    game.show_guesses();
 }
