@@ -37,7 +37,7 @@ impl Game {
         let mut sanitized_guess = String::new();
 
         while !valid_guess {
-            guess = String::new();
+            guess = "".to_owned();
 
             println!("Guess: ({} More)", (MAX_GUESSES - self.guesses.len()));
             io::stdin().read_line(&mut guess).unwrap();
