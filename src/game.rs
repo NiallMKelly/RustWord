@@ -3,6 +3,8 @@ use std::io;
 
 use std::format;
 
+use colored::Colorize;
+
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
 
@@ -77,8 +79,23 @@ impl Game {
         for g in &self.guesses {
             let mut output = String::new();
             g.chars().enumerate().for_each(|(_pos, c)| {
-                let currstr = format!("[{}]", c);
-                output.push_str(&currstr);
+
+                let formatted_string;
+                
+                if self.word.contains(c) {
+                    if self.word.find(c) == Some(_pos) {
+                        // Only show green if correct letter in right place
+                        formatted_string = format!("[{}]", c.to_string().green().bold());
+                    } else {
+                        // Yellow if its in the word but wrong palce
+                        formatted_string = format!("[{}]", c.to_string().yellow().bold()); 
+                    }
+                } else {
+                    // Grey if not in word
+                    formatted_string = format!("[{}]", c.to_string().dimmed());
+                }
+
+                output.push_str(&formatted_string);
             });
             println!("{}", output);
         }

@@ -9,9 +9,11 @@ TODO:
 
 [X] - Show all guesses
 
-[ ] - Indicate correct letters
+[X] - Indicate correct letters
 
-[ ] - Indicate incorrect letters
+[X] - Indicate incorrect letters
+
+[X] - Indicate letters are in the correct position
 
 [ ] - Create a propert dictionary of 5 letter words
 
