@@ -2,8 +2,7 @@ use std::collections::HashSet;
 use std::fs::File;
 use std::io;
 use std::format;
-use std::io::BufRead;
-use std::io::BufReader;
+use std::io::{BufRead, BufReader};
 
 use colored::Colorize;
 use rand::seq::SliceRandom;
@@ -31,7 +30,7 @@ impl Game {
         let word = dict.choose(&mut rand::thread_rng()).unwrap().to_string().to_uppercase();
 
         Self {
-            word: word,
+            word,
             guesses: Vec::new(),
             letters_used: HashSet::new(),
             current_guess: String::new(),
