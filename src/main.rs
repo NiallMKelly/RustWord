@@ -9,7 +9,7 @@ fn main() {
     while !game.game_over() {
         // Prompt for the users input
         game.show_guesses();
-        let input = game.wait_for_guess();
+        let _input = game.wait_for_guess();
     }
 
     game.show_guesses();
