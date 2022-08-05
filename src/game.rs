@@ -1,12 +1,16 @@
 use std::collections::HashSet;
+use std::fs::File;
 use std::io;
-
 use std::format;
+use std::io::BufRead;
+use std::io::BufReader;
 
 use colored::Colorize;
+use rand::seq::SliceRandom;
 
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
+const WORDS_FILE: &str = "words.txt";
 
 pub struct Game {
     word: String,
@@ -22,10 +26,10 @@ impl Game {
         let word_dict = Game::load_word_dict();
 
         // Just get the second word for now
-        let word = &word_dict[2].to_uppercase().to_owned();
+        let word = word_dict.choose(&mut rand::thread_rng()).unwrap().to_string().to_uppercase();
 
         Self {
-            word: word.to_owned(),
+            word: word,
             guesses: Vec::new(),
             letters_used: HashSet::new(),
             current_guess: String::new(),
@@ -33,7 +37,7 @@ impl Game {
     }
 
     pub fn wait_for_guess(&mut self) -> String{
-        let mut guess = String::new();
+        let mut guess;
         
         let mut valid_guess: bool = false;
         let mut sanitized_guess = String::new();
@@ -147,13 +151,12 @@ impl Game {
 
     fn load_word_dict() -> Vec<String> {
         let mut dict = Vec::new();
-        println!("Loading word dict...");
+        let file = File::open(WORDS_FILE).expect("Unable to open file");
+        let reader = BufReader::new(file);
 
-        dict.push("Hello".to_owned());
-        dict.push("Brown".to_owned());
-        dict.push("Child".to_owned());
-        dict.push("Owner".to_owned());
-        dict.push("Thing".to_owned());
+        for l in reader.lines() {
+            dict.push(l.unwrap());
+        }
 
         return dict;
     }

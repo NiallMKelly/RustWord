@@ -15,11 +15,11 @@ TODO:
 
 [X] - Indicate letters are in the correct position
 
-[ ] - Create a propert dictionary of 5 letter words
+[X] - Create a proper dictionary of 5 letter words
 
 [ ] - Different difficulties
 
-[ ] - Only allow valid worlds in the dictionary
+[ ] - Only allow valid words in the dictionary
 
 Future:
 
