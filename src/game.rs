@@ -109,7 +109,7 @@ impl Game {
         }
 
         (0..guesses_remaining).for_each(|_n: usize| {
-            println!("[ ][ ][ ][ ][ ]");
+            println!("{}", "[ ]".repeat(5));
         });
 
         if self.game_over {
