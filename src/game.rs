@@ -117,6 +117,19 @@ impl Game {
         }
 
         println!("\n");
+
+        self.show_letters_used();
+
+        print!("\n")
+    }
+
+    fn show_letters_used(&mut self) {
+        let mut letters: String = String::new();
+        for l in &self.letters_used {
+           letters.push_str(&format!(" {}",l));
+        }
+
+        print!("Used Letters: {}", letters.trim().dimmed());
     }
 
     pub fn check_guess(&mut self, guess: String) -> bool {
