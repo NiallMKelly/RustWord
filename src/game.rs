@@ -10,7 +10,7 @@ use rand::seq::SliceRandom;
 
 const MAX_GUESSES: usize = 6;
 const WORD_LENGTH: usize = 5;
-const WORDS_FILE: &str = "words.txt";
+const WORDS_FILE: &str = "wordle_words.txt";
 
 pub struct Game {
     word: String,
