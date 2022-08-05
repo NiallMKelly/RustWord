@@ -149,20 +149,19 @@ impl Game {
     }
  
     pub fn game_over(&mut self) -> bool {
-        // Game over id;
-        // We have run out of guesses
-        // We have got the right answer
         if &self.current_guess == &self.word {
             println!("Correct! You guessed the word correctly!");
             self.game_over = true;
             return self.game_over;
-        } else if self.guesses.len() >= MAX_GUESSES {
+        }
+        
+        if self.guesses.len() >= MAX_GUESSES {
             println!("You ran out of guesses!");
             self.game_over = true;
             return self.game_over;
-        } else {
-            return false;
         }
+        
+        return self.game_over;
     }
 
     fn load_word_dict() -> Vec<String> {
