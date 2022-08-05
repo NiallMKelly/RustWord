@@ -17,22 +17,24 @@ pub struct Game {
     guesses: Vec<String>,
     current_guess: String,
     letters_used: HashSet<char>,
+    word_dict: Vec<String>,
 }
 
 impl Game {
     pub fn new() -> Self {
 
         // Load the words into a Vector
-        let word_dict = Game::load_word_dict();
+        let dict = Game::load_word_dict();
 
         // Just get the second word for now
-        let word = word_dict.choose(&mut rand::thread_rng()).unwrap().to_string().to_uppercase();
+        let word = dict.choose(&mut rand::thread_rng()).unwrap().to_string().to_uppercase();
 
         Self {
             word: word,
             guesses: Vec::new(),
             letters_used: HashSet::new(),
             current_guess: String::new(),
+            word_dict: dict,
         }
     }
 
@@ -129,6 +131,12 @@ impl Game {
                 println!("You have already guessed '{}'", guess);
                 return false;
             }
+        }
+
+        // Is the guess in our dictionary?
+        if !self.word_dict.contains(&guess.to_lowercase()) {
+            println!("Your guess '{}' could not be found in our list of words. Try a different word.", guess);
+            return false;
         }
 
         return true;

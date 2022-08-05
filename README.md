@@ -19,7 +19,7 @@ TODO:
 
 [ ] - Different difficulties
 
-[ ] - Only allow valid words in the dictionary
+[X] - Only allow valid words in the dictionary
 
 Future:
 
