@@ -109,6 +109,11 @@ impl Game {
 
     pub fn check_guess(&mut self, guess: String) -> bool {
         
+        if !guess.chars().all(char::is_alphanumeric) {
+            println!("Your guess contains characters that aren't letters. It should only contain letters.");
+            return false;
+        }
+
         if guess.len() != WORD_LENGTH {
             println!("Your guess is '{}' letters. It should have {} letters.", guess.len(), WORD_LENGTH);
             return false;

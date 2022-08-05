@@ -3,7 +3,7 @@ A simple clone of a popular word game built with rust.
 
 TODO:
 
-[ ] - Only allow alpha characters
+[X] - Only allow alpha characters
 
 [X] - Don't allow the same guess more than once
 
