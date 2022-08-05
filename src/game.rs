@@ -80,7 +80,7 @@ impl Game {
     }
 
     pub fn show_guesses(&mut self) {
-        println!("Your Guesses");
+        println!("Guesses:");
 
         let guesses_remaining = MAX_GUESSES - self.guesses.len();
         
