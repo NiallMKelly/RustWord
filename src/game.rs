@@ -18,6 +18,7 @@ pub struct Game {
     current_guess: String,
     letters_used: HashSet<char>,
     word_dict: Vec<String>,
+    game_over: bool,
 }
 
 impl Game {
@@ -35,6 +36,7 @@ impl Game {
             letters_used: HashSet::new(),
             current_guess: String::new(),
             word_dict: dict,
+            game_over: false,
         }
     }
 
@@ -110,6 +112,10 @@ impl Game {
             println!("[ ][ ][ ][ ][ ]");
         });
 
+        if self.game_over {
+            println!("\nAnswer: {}", self.word.green().bold());
+        }
+
         println!("\n");
     }
 
@@ -148,14 +154,16 @@ impl Game {
         // We have got the right answer
         if &self.current_guess == &self.word {
             println!("Correct! You guessed the word correctly!");
-            return true;
+            self.game_over = true;
+            return self.game_over;
         } else if self.guesses.len() >= MAX_GUESSES {
             println!("You ran out of guesses!");
-            return true;
+            self.game_over = true;
+            return self.game_over;
         } else {
-                return false;
-            }   
+            return false;
         }
+    }
 
     fn load_word_dict() -> Vec<String> {
         let mut dict = Vec::new();
